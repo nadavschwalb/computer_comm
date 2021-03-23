@@ -6,9 +6,9 @@ enable_testing()
 
 #add_executable(EX1 src/test.cpp src/test_lib.cpp)
 
-add_executable(channel src/channel.cpp src/ServerUtil.cpp src/hamming.cpp)
-add_executable(sender src/sender.cpp src/ServerUtil.cpp src/hamming.cpp)
-add_executable(receiver src/receiver.cpp src/ServerUtil.cpp src/hamming.cpp)
+add_executable(channel src/channel.cpp src/ServerUtil.cpp)
+add_executable(sender src/sender.cpp src/ServerUtil.cpp)
+add_executable(receiver src/receiver.cpp src/ServerUtil.cpp)
 add_executable(hamming_test src/hamming_test.cpp src/hamming.cpp)
 target_include_directories(channel PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(sender PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")

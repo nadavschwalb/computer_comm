@@ -620,9 +620,6 @@ src/hamming.obj: src/hamming.cpp.obj
 
 # target to build an object file
 src/hamming.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/hamming.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/hamming.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/hamming.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming.cpp.obj
 .PHONY : src/hamming.cpp.obj
 
@@ -631,9 +628,6 @@ src/hamming.i: src/hamming.cpp.i
 
 # target to preprocess a source file
 src/hamming.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/hamming.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/hamming.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/hamming.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming.cpp.i
 .PHONY : src/hamming.cpp.i
 
@@ -642,9 +636,6 @@ src/hamming.s: src/hamming.cpp.s
 
 # target to generate assembly for a file
 src/hamming.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/hamming.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/hamming.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/hamming.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming.cpp.s
 .PHONY : src/hamming.cpp.s
 

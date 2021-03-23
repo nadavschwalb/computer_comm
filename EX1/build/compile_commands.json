@@ -11,11 +11,6 @@
 },
 {
   "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
-  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/receiver.dir/includes_CXX.rsp -g -o CMakeFiles\\receiver.dir\\src\\hamming.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\hamming.cpp",
-  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/hamming.cpp"
-},
-{
-  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
   "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/sender.dir/includes_CXX.rsp -g -o CMakeFiles\\sender.dir\\src\\sender.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\sender.cpp",
   "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/sender.cpp"
 },
@@ -26,11 +21,6 @@
 },
 {
   "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
-  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/sender.dir/includes_CXX.rsp -g -o CMakeFiles\\sender.dir\\src\\hamming.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\hamming.cpp",
-  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/hamming.cpp"
-},
-{
-  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
   "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/channel.dir/includes_CXX.rsp -g -o CMakeFiles\\channel.dir\\src\\channel.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\channel.cpp",
   "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/channel.cpp"
 },
@@ -38,11 +28,6 @@
   "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
   "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/channel.dir/includes_CXX.rsp -g -o CMakeFiles\\channel.dir\\src\\ServerUtil.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\ServerUtil.cpp",
   "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/ServerUtil.cpp"
-},
-{
-  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
-  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/channel.dir/includes_CXX.rsp -g -o CMakeFiles\\channel.dir\\src\\hamming.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\hamming.cpp",
-  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/hamming.cpp"
 },
 {
   "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
