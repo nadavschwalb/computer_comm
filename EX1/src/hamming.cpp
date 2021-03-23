@@ -1,62 +1,4 @@
-
-#include "hamming.h"
-
-int main(int argc, char** argv){
-
-  //global variables
-  int iResult;
-  char readbuf [UNCODED_LEN];
-  char bits[UNCODED_LEN*BYTE];
-  int recvbuf[UNCODED_LEN];
-  int encoded[BYTE];
-  char inbits[UNCODED_LEN];
-  char outbits[ENCODED_LEN];
-  char encoded_bits[ENCODED_LEN*BYTE];
-
-
-  FILE *fp = fopen("../Dtelem.jpg", "r" );
-  fseek(fp,0,SEEK_END);
-  printf("file length in bytes: %ld\n",ftell(fp));
-  iResult = fseek(fp,0,SEEK_SET);
-  if(iResult != 0){
-    printf("seek error: %S\n",strerror(iResult));
-  }
-
-
-  int read_count;
-  
-  while(true){
-
-      read_count = fread(readbuf,sizeof(char),UNCODED_LEN,fp);
-      if (read_count!=UNCODED_LEN){
-        printf("\n");
-          if (0!=feof(fp)){
-              printf("end of file reached\n");
-              fclose(fp);
-              return 0;
-          }
-          int errnum=ferror(fp);
-          printf("Error in reading file: %s\n",strerror(errnum));
-          fclose(fp);
-          return 1;
-      }
-      // decoded_to_bits(readbuf,bits,UNCODED_LEN);
-      get_bits(readbuf,bits,BYTE,UNCODED_LEN);
-      print_arr(bits,UNCODED_LEN*BYTE);
-      hamming_encoder(bits,encoded);
-      // encoded_to_bits(encoded,encoded_bits,ENCODED_LEN);
-      get_bits(encoded,encoded_bits,ENCODED_LEN,BYTE);
-      print_arr(encoded_bits,ENCODED_LEN*BYTE);
-      hamming_decoder(encoded_bits,recvbuf);
-      // recved_to_bits(recvbuf,bits,UNCODED_LEN);
-      get_bits(recvbuf,bits,UNCODED_LEN,BYTE);
-      print_arr(bits,UNCODED_LEN*BYTE);
-      
-
-  }
-  return 0;
-}
-
+#include "hamming.hpp"
 
 //---------------------functions-------------------------
 
@@ -145,7 +87,7 @@ int merge_hamming(char* outbits,int nbits){
 void hamming_encoder(char* bits,int* encoded){
   char inbits[UNCODED_LEN];
   char outbits[ENCODED_LEN];
-  for(int i=0;i<BYTE;i++){
+  for(int i=0;i<BYTE_LEN;i++){
     //create sub array of 11 bits
     for(int j=0;j<UNCODED_LEN;j++){
       inbits[j] = bits[i*UNCODED_LEN +j];
@@ -160,7 +102,7 @@ void hamming_encoder(char* bits,int* encoded){
 void hamming_decoder(char* bits,int* decoded){
   char inbits[ENCODED_LEN];
   char outbits[UNCODED_LEN];
-  for(int i=0;i<BYTE;i++){
+  for(int i=0;i<BYTE_LEN;i++){
     //create sub array of 15 bits
     for(int j=0;j<ENCODED_LEN;j++){
       inbits[j] = bits[i*ENCODED_LEN +j];
@@ -192,6 +134,3 @@ void print_arr(T* arr,int arr_len){
   }
   printf("\n");
 }
-
-
-

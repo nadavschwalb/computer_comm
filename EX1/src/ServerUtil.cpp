@@ -1,4 +1,4 @@
-#include "ServerUtil.h"
+#include "ServerUtil.hpp"
 //functions
 
 void printWSAError(){
@@ -70,3 +70,7 @@ void text_red() {
 void text_reset () {
   printf("\033[0m");
 }
+
+
+
+//hamming

@@ -549,17 +549,17 @@ channel/fast:
 .PHONY : channel/fast
 
 #=============================================================================
-# Target rules for targets named hamming
+# Target rules for targets named hamming_test
 
 # Build rule for target.
-hamming: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 hamming
-.PHONY : hamming
+hamming_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 hamming_test
+.PHONY : hamming_test
 
 # fast build rule for target.
-hamming/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/build
-.PHONY : hamming/fast
+hamming_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/build
+.PHONY : hamming_test/fast
 
 src/ServerUtil.obj: src/ServerUtil.cpp.obj
 .PHONY : src/ServerUtil.obj
@@ -620,7 +620,10 @@ src/hamming.obj: src/hamming.cpp.obj
 
 # target to build an object file
 src/hamming.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/src/hamming.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/hamming.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/hamming.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/hamming.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming.cpp.obj
 .PHONY : src/hamming.cpp.obj
 
 src/hamming.i: src/hamming.cpp.i
@@ -628,7 +631,10 @@ src/hamming.i: src/hamming.cpp.i
 
 # target to preprocess a source file
 src/hamming.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/src/hamming.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/hamming.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/hamming.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/hamming.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming.cpp.i
 .PHONY : src/hamming.cpp.i
 
 src/hamming.s: src/hamming.cpp.s
@@ -636,8 +642,35 @@ src/hamming.s: src/hamming.cpp.s
 
 # target to generate assembly for a file
 src/hamming.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/src/hamming.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/hamming.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/hamming.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/hamming.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming.cpp.s
 .PHONY : src/hamming.cpp.s
+
+src/hamming_test.obj: src/hamming_test.cpp.obj
+.PHONY : src/hamming_test.obj
+
+# target to build an object file
+src/hamming_test.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming_test.cpp.obj
+.PHONY : src/hamming_test.cpp.obj
+
+src/hamming_test.i: src/hamming_test.cpp.i
+.PHONY : src/hamming_test.i
+
+# target to preprocess a source file
+src/hamming_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming_test.cpp.i
+.PHONY : src/hamming_test.cpp.i
+
+src/hamming_test.s: src/hamming_test.cpp.s
+.PHONY : src/hamming_test.s
+
+# target to generate assembly for a file
+src/hamming_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming_test.cpp.s
+.PHONY : src/hamming_test.cpp.s
 
 src/receiver.obj: src/receiver.cpp.obj
 .PHONY : src/receiver.obj
@@ -727,7 +760,7 @@ help:
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
 	@echo ... channel
-	@echo ... hamming
+	@echo ... hamming_test
 	@echo ... receiver
 	@echo ... sender
 	@echo ... src/ServerUtil.obj
@@ -739,6 +772,9 @@ help:
 	@echo ... src/hamming.obj
 	@echo ... src/hamming.i
 	@echo ... src/hamming.s
+	@echo ... src/hamming_test.obj
+	@echo ... src/hamming_test.i
+	@echo ... src/hamming_test.s
 	@echo ... src/receiver.obj
 	@echo ... src/receiver.i
 	@echo ... src/receiver.s

@@ -21,3 +21,4 @@ BOOL recv_safe(SOCKET* socket, char* buffer,int* iResult);
 void text_green();
 void text_red();
 void text_reset();
+

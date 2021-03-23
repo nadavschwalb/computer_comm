@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sender.dir/src/ServerUtil.cpp.obj"
   "CMakeFiles/sender.dir/src/ServerUtil.cpp.obj.d"
+  "CMakeFiles/sender.dir/src/hamming.cpp.obj"
+  "CMakeFiles/sender.dir/src/hamming.cpp.obj.d"
   "CMakeFiles/sender.dir/src/sender.cpp.obj"
   "CMakeFiles/sender.dir/src/sender.cpp.obj.d"
   "libsender.dll.a"

@@ -10,7 +10,8 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
-#include "ServerUtil.h"
+#include "ServerUtil.hpp"
+#include "hamming.hpp"
 
 #pragma comment(lib, "Ws2_32.lib")
 
@@ -22,7 +23,7 @@ int main(int argc, char** argv) {
   int errnum;
   char sendbuf[DEFAULT_BUFLEN];
   char recvbuf[DEFAULT_BUFLEN];
-
+  get_bits(sendbuf,recvbuf,10,10);
   //channel address
   struct sockaddr_in channel_addr;
   int channel_addr_size = sizeof(channel_addr);

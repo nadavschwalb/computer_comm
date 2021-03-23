@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <winerror.h>
-#include "ServerUtil.h"
+#include "ServerUtil.hpp"
 #include "time.h"
 
 #pragma comment(lib, "Ws2_32.lib")

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/ServerUtil.cpp" "CMakeFiles/channel.dir/src/ServerUtil.cpp.obj" "gcc" "CMakeFiles/channel.dir/src/ServerUtil.cpp.obj.d"
   "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/channel.cpp" "CMakeFiles/channel.dir/src/channel.cpp.obj" "gcc" "CMakeFiles/channel.dir/src/channel.cpp.obj.d"
+  "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/hamming.cpp" "CMakeFiles/channel.dir/src/hamming.cpp.obj" "gcc" "CMakeFiles/channel.dir/src/hamming.cpp.obj.d"
   )
 
 # Targets to which this target links.

@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/channel.dir/src/ServerUtil.cpp.obj.d"
   "CMakeFiles/channel.dir/src/channel.cpp.obj"
   "CMakeFiles/channel.dir/src/channel.cpp.obj.d"
+  "CMakeFiles/channel.dir/src/hamming.cpp.obj"
+  "CMakeFiles/channel.dir/src/hamming.cpp.obj.d"
   "channel.exe"
   "channel.exe.manifest"
   "channel.pdb"
