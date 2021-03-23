@@ -30,6 +30,7 @@ C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/rece
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousCoverage.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/sender.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/channel.dir
+C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/hamming.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/package.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/test.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/edit_cache.dir

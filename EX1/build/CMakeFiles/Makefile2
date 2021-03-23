@@ -65,6 +65,7 @@ CMAKE_BINARY_DIR = C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\bu
 all: CMakeFiles/receiver.dir/all
 all: CMakeFiles/sender.dir/all
 all: CMakeFiles/channel.dir/all
+all: CMakeFiles/hamming.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -103,6 +104,7 @@ clean: CMakeFiles/receiver.dir/clean
 clean: CMakeFiles/ContinuousCoverage.dir/clean
 clean: CMakeFiles/sender.dir/clean
 clean: CMakeFiles/channel.dir/clean
+clean: CMakeFiles/hamming.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -814,7 +816,7 @@ CMakeFiles/ContinuousTest.dir/clean:
 CMakeFiles/receiver.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=4,5,6 "Built target receiver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=6,7,8 "Built target receiver"
 .PHONY : CMakeFiles/receiver.dir/all
 
 # Build rule for subdir invocation for target.
@@ -866,7 +868,7 @@ CMakeFiles/ContinuousCoverage.dir/clean:
 CMakeFiles/sender.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=7,8,9 "Built target sender"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=9,10,11 "Built target sender"
 .PHONY : CMakeFiles/sender.dir/all
 
 # Build rule for subdir invocation for target.
@@ -910,6 +912,32 @@ channel: CMakeFiles/channel.dir/rule
 CMakeFiles/channel.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/clean
 .PHONY : CMakeFiles/channel.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/hamming.dir
+
+# All Build rule for target.
+CMakeFiles/hamming.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=4,5 "Built target hamming"
+.PHONY : CMakeFiles/hamming.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/hamming.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/hamming.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 0
+.PHONY : CMakeFiles/hamming.dir/rule
+
+# Convenience name for target.
+hamming: CMakeFiles/hamming.dir/rule
+.PHONY : hamming
+
+# clean rule for target.
+CMakeFiles/hamming.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/clean
+.PHONY : CMakeFiles/hamming.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

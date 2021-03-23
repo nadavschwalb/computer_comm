@@ -548,6 +548,19 @@ channel/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/build
 .PHONY : channel/fast
 
+#=============================================================================
+# Target rules for targets named hamming
+
+# Build rule for target.
+hamming: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 hamming
+.PHONY : hamming
+
+# fast build rule for target.
+hamming/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/build
+.PHONY : hamming/fast
+
 src/ServerUtil.obj: src/ServerUtil.cpp.obj
 .PHONY : src/ServerUtil.obj
 
@@ -601,6 +614,30 @@ src/channel.s: src/channel.cpp.s
 src/channel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/channel.cpp.s
 .PHONY : src/channel.cpp.s
+
+src/hamming.obj: src/hamming.cpp.obj
+.PHONY : src/hamming.obj
+
+# target to build an object file
+src/hamming.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/src/hamming.cpp.obj
+.PHONY : src/hamming.cpp.obj
+
+src/hamming.i: src/hamming.cpp.i
+.PHONY : src/hamming.i
+
+# target to preprocess a source file
+src/hamming.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/src/hamming.cpp.i
+.PHONY : src/hamming.cpp.i
+
+src/hamming.s: src/hamming.cpp.s
+.PHONY : src/hamming.s
+
+# target to generate assembly for a file
+src/hamming.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming.dir\build.make CMakeFiles/hamming.dir/src/hamming.cpp.s
+.PHONY : src/hamming.cpp.s
 
 src/receiver.obj: src/receiver.cpp.obj
 .PHONY : src/receiver.obj
@@ -690,6 +727,7 @@ help:
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
 	@echo ... channel
+	@echo ... hamming
 	@echo ... receiver
 	@echo ... sender
 	@echo ... src/ServerUtil.obj
@@ -698,6 +736,9 @@ help:
 	@echo ... src/channel.obj
 	@echo ... src/channel.i
 	@echo ... src/channel.s
+	@echo ... src/hamming.obj
+	@echo ... src/hamming.i
+	@echo ... src/hamming.s
 	@echo ... src/receiver.obj
 	@echo ... src/receiver.i
 	@echo ... src/receiver.s

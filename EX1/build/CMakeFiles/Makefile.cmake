@@ -89,4 +89,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ContinuousCoverage.dir/DependInfo.cmake"
   "CMakeFiles/sender.dir/DependInfo.cmake"
   "CMakeFiles/channel.dir/DependInfo.cmake"
+  "CMakeFiles/hamming.dir/DependInfo.cmake"
   )
