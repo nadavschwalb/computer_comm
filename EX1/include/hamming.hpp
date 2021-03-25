@@ -13,13 +13,16 @@
 
 namespace Hamming
 {
+  void encode(char* readbuf,char* writebuf);
+  void decode(char* encoded,char* filebuf);
   void parity_encoder(char* inbits, char* outbits);
   void parity_decoder(char* inbits, char* outbits);
   void reverseArray(char* arr, int arr_len);
   void print_arr(char* arr,int arr_len);
-  int merge_hamming(char* outbits,int nbits);
-  void hamming_encoder(char* bits,int* encoded);
-  void hamming_decoder(char* bits,int* decoded);
+  void diff_arr(char* src, char* diff, int arr_len);
+  void merge(char* inbits, char* outarr, int nbits);
+  void hamming_encoder(char* bits,char* encoded);
+  void hamming_decoder(char* bits,char* decoded);
 
   template<typename T>
   void get_bits(T* block, char* bits, int nbits, int nelem){

@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ServerUtil.hpp"
-
+#include "hamming.hpp"
 #pragma comment(lib, "Ws2_32.lib")
 
 int main(int argc, char** argv) {
@@ -22,10 +22,10 @@ int main(int argc, char** argv) {
   int errnum;
   char sendbuf[DEFAULT_BUFLEN];
   char recvbuf[DEFAULT_BUFLEN];
+  FILE* fp;
   //channel address
   struct sockaddr_in channel_addr;
   int channel_addr_size = sizeof(channel_addr);
-
   //Winsock init
   iResult = WSAStartup(MAKEWORD(2,2),&wsaData);
   if(iResult != 0){
@@ -85,6 +85,9 @@ int main(int argc, char** argv) {
   }
   printf("connected to server\n");
 
+  //open file
+  fp = fopen(argv[2],"r");
+  
   //send startup message 
   strcpy(sendbuf,"hello server\n");
   //if(!sendto_safe(&ConnectSocket,sendbuf,&channel_addr,channel_addr_size,&iResult)) return 1;
