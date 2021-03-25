@@ -55,7 +55,7 @@ BOOL recvfrom_safe(SOCKET* socket, char* buffer,sockaddr_in* from,int* fromlen,i
     WSACleanup();
     return FALSE;
   }
-  printf("sender ip: %s\tsender port: %d\n",inet_ntoa(from->sin_addr),from->sin_port);
+  //printf("sender ip: %s\tsender port: %d\n",inet_ntoa(from->sin_addr),from->sin_port);
   return TRUE;
 }
 

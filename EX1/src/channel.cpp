@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <winerror.h>
 #include "ServerUtil.hpp"
+#include "hamming.hpp"
 #include "time.h"
 
 #pragma comment(lib, "Ws2_32.lib")
@@ -19,7 +20,7 @@ int main(int argc, char** argv) {
   //global objects
   WSADATA wsaData;
   int iResult;
-  char recvbuf[DEFAULT_BUFLEN];
+  char recvbuf[MSG_LEN];
   char sendbuf[DEFAULT_BUFLEN];
   int iSendResult;
   int recvbuflen = DEFAULT_BUFLEN;
@@ -119,29 +120,30 @@ int main(int argc, char** argv) {
   // Receive until the peer shuts down the connection
   do
   {
-    printf("reciveing data from sender socket\n");
+    memset(recvbuf,0,MSG_LEN);
+    //printf("reciveing data from sender socket\n");
     //receive msg from sender
     if(!recvfrom_safe(&ChannelSendSocket,recvbuf,&sender_addr,&sender_addr_size,&iResult)) return 1;
     if(iResult>0){
       text_green();
-      printf("%s",recvbuf);
+      Hamming::print_arr(recvbuf,MSG_LEN);
       text_reset();
       //if(!sendto_safe(&ChannelRecvSocket,recvbuf,&recver_addr,recver_addr_size,&iResult)) return 1;
-      if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));
-      printf("message sent to receiver\n");
-      if(!recvfrom_safe(&ChannelRecvSocket,recvbuf,&recver_addr,&recver_addr_size,&iResult)) return 1;
-      if(iResult > 0){
-        text_green();
-        printf("%s",recvbuf);
-        text_reset();
-        strcpy(sendbuf,"response to sender from channel\n");
-        if(!sendto_safe(&ChannelSendSocket,sendbuf,&sender_addr,sender_addr_size,&iResult)) return 1;
-        printf("response sent to sender\n");
-      }
-      else{
-        printf("mesage from receiver empty\n");
-        break;
-      }
+      // if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));
+      // printf("message sent to receiver\n");
+      // if(!recvfrom_safe(&ChannelRecvSocket,recvbuf,&recver_addr,&recver_addr_size,&iResult)) return 1;
+      // if(iResult > 0){
+      //   text_green();
+      //   printf("%s",recvbuf);
+      //   text_reset();
+      //   strcpy(sendbuf,"response to sender from channel\n");
+      //   if(!sendto_safe(&ChannelSendSocket,sendbuf,&sender_addr,sender_addr_size,&iResult)) return 1;
+      //   printf("response sent to sender\n");
+      // }
+      // else{
+      //   printf("mesage from receiver empty\n");
+      //   break;
+      // }
     }
     else{
       printf("message from sender empty\n");

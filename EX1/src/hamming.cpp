@@ -3,6 +3,38 @@
 using namespace Hamming;
 //---------------------functions-------------------------
 
+  int Hamming::read_msg(FILE* fp, int msg_len, char* readbuf){
+    int read_count;
+    bool eof;
+    char encodedbuf[ENCODED_LEN];
+    memset(readbuf,0,msg_len);
+    for(int i=0;i<msg_len/UNCODED_LEN;i++){
+      read_count = fread(readbuf,sizeof(char),UNCODED_LEN,fp);
+      if (read_count!=UNCODED_LEN){
+        printf("\n");
+          if (0!=feof(fp)){
+              printf("end of file reached\n");
+              fclose(fp);
+              eof = true;
+              return 0;
+          }
+          int errnum=ferror(fp);
+          printf("Error in reading file: %s\n",strerror(errnum));
+          fclose(fp);
+          return -1;
+      }
+      //encode msg
+      Hamming::encode(readbuf,encodedbuf);
+      //concatinate msg to sendbuff
+      std::copy(encodedbuf,encodedbuf+ENCODED_LEN,readbuf + i*ENCODED_LEN);
+    }
+    return 1;
+  }
+
+  bool Hamming::write_msg(FILE* fp, int msg_len){
+    return true;
+  }
+
 void Hamming::encode(char* readbuf,char* encodedbuf){
   char inbits[UNCODED_LEN*BYTE_LEN];
   char outbits[ENCODED_LEN*BYTE_LEN];

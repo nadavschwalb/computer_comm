@@ -9,7 +9,7 @@
 
 #define ERROR_BUF_LEN 512
 #define DEFAULT_BUFLEN 512
-
+#define MSG_LEN 660
 //functions
 void printWSAError();
 BOOL send_safe(SOCKET* socket, char* buffer,int* iResult);

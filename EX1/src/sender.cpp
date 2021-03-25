@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "ServerUtil.hpp"
 #include "hamming.hpp"
 #pragma comment(lib, "Ws2_32.lib")
@@ -20,7 +21,7 @@ int main(int argc, char** argv) {
   WSADATA wsaData;
   int iResult;
   int errnum;
-  char sendbuf[DEFAULT_BUFLEN];
+  char sendbuf[MSG_LEN];
   char recvbuf[DEFAULT_BUFLEN];
   FILE* fp;
   //channel address
@@ -86,8 +87,38 @@ int main(int argc, char** argv) {
   printf("connected to server\n");
 
   //open file
-  fp = fopen(argv[2],"r");
-  
+  printf("opening file\n");
+  fp = fopen(argv[3],"r");
+  if(fp==NULL){
+    errnum = errno;
+    fprintf(stderr,strerror(errnum));
+    closesocket(ConnectSocket);
+    WSACleanup();
+    return 1;
+  }
+  //read and encode file
+  int read_count;
+  bool eof = false;
+  char readbuf[UNCODED_LEN];
+  char encodedbuf[ENCODED_LEN];
+  iResult = 1;
+  while(iResult>0){ //while EOF not reached
+      iResult = Hamming::read_msg(fp,MSG_LEN,sendbuf);
+      if(iResult==0){
+        break;
+      }
+      else if(iResult<0){
+        closesocket(ConnectSocket);
+        WSACleanup();
+        return 1;
+      }
+      else{
+        Hamming::print_arr(sendbuf,MSG_LEN);
+        if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
+      }
+    }
+    printf("message sent\n");
+
   //send startup message 
   strcpy(sendbuf,"hello server\n");
   //if(!sendto_safe(&ConnectSocket,sendbuf,&channel_addr,channel_addr_size,&iResult)) return 1;
