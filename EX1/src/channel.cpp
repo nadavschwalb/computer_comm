@@ -15,13 +15,13 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-int main(int argc, char** argv) {
+int main(int argc, const char** argv) {
   //argv  1:sender_port 2:receiver_ip 3:receiver_port
   //global objects
   WSADATA wsaData;
   int iResult;
-  char recvbuf[MSG_LEN];
-  char sendbuf[DEFAULT_BUFLEN];
+  char recvbuf[ENCODED_MSG_LEN];
+  char sendbuf[UNCODED_MSG_LEN];
   int iSendResult;
   int recvbuflen = DEFAULT_BUFLEN;
 
@@ -120,13 +120,14 @@ int main(int argc, char** argv) {
   // Receive until the peer shuts down the connection
   do
   {
-    memset(recvbuf,0,MSG_LEN);
+    memset(recvbuf,0,ENCODED_MSG_LEN);
     //printf("reciveing data from sender socket\n");
     //receive msg from sender
     if(!recvfrom_safe(&ChannelSendSocket,recvbuf,&sender_addr,&sender_addr_size,&iResult)) return 1;
     if(iResult>0){
       text_green();
-      Hamming::print_arr(recvbuf,MSG_LEN);
+      //Hamming::print_arr(recvbuf,ENCODED_MSG_LEN);
+      if(!Hamming::write_msg(NULL,ENCODED_MSG_LEN,sendbuf));
       text_reset();
       //if(!sendto_safe(&ChannelRecvSocket,recvbuf,&recver_addr,recver_addr_size,&iResult)) return 1;
       // if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));

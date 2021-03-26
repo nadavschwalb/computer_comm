@@ -13,8 +13,8 @@
 
 namespace Hamming
 {
-  int read_msg(FILE* fp, int msg_len, char* readbuf);
-  bool write_msg(FILE* fp, int msg_len);
+  int read_msg(FILE* fp, int msg_len, char* msg);
+  bool write_msg(FILE* fp, int msg_len, char* msg);
   void encode(char* readbuf,char* writebuf);
   void decode(char* encoded,char* filebuf);
   void parity_encoder(char* inbits, char* outbits);

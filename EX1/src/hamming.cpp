@@ -1,13 +1,14 @@
 #include "hamming.hpp"
-
+#include "ServerUtil.hpp"
 using namespace Hamming;
 //---------------------functions-------------------------
 
-  int Hamming::read_msg(FILE* fp, int msg_len, char* readbuf){
+  int Hamming::read_msg(FILE* fp, int msg_len, char* msg){
     int read_count;
     bool eof;
+    char readbuf[UNCODED_LEN];
     char encodedbuf[ENCODED_LEN];
-    memset(readbuf,0,msg_len);
+    memset(msg,0,ENCODED_MSG_LEN);
     for(int i=0;i<msg_len/UNCODED_LEN;i++){
       read_count = fread(readbuf,sizeof(char),UNCODED_LEN,fp);
       if (read_count!=UNCODED_LEN){
@@ -24,14 +25,24 @@ using namespace Hamming;
           return -1;
       }
       //encode msg
-      Hamming::encode(readbuf,encodedbuf);
+      encode(readbuf,encodedbuf);
       //concatinate msg to sendbuff
-      std::copy(encodedbuf,encodedbuf+ENCODED_LEN,readbuf + i*ENCODED_LEN);
+      std::copy(encodedbuf,encodedbuf+ENCODED_LEN,msg + i*ENCODED_LEN);
     }
     return 1;
   }
 
-  bool Hamming::write_msg(FILE* fp, int msg_len){
+  bool Hamming::write_msg(FILE* fp, int msg_len, char* msg){
+    char encodedbuf[ENCODED_LEN];
+    char decodedbuf[UNCODED_LEN];
+    char decodedmsg[UNCODED_MSG_LEN];
+    for(int i=0;i<ENCODED_MSG_LEN/ENCODED_LEN;i++){
+      std::copy(msg+i*ENCODED_LEN,msg+(i+1)*ENCODED_LEN,encodedbuf);
+      decode(encodedbuf,decodedbuf);
+      std::copy(decodedbuf,decodedbuf+UNCODED_LEN,decodedmsg+i*UNCODED_LEN);
+    }
+    print_arr(decodedmsg,UNCODED_MSG_LEN);
+
     return true;
   }
 
