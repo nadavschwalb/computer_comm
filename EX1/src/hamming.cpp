@@ -3,20 +3,28 @@
 using namespace Hamming;
 //---------------------functions-------------------------
 
-  int Hamming::read_msg(FILE* fp, int msg_len, char* msg){
+  int Hamming::read_msg(FILE* fp, char* msg){
     int read_count;
-    bool eof;
     char readbuf[UNCODED_LEN];
     char encodedbuf[ENCODED_LEN];
     memset(msg,0,ENCODED_MSG_LEN);
-    for(int i=0;i<msg_len/UNCODED_LEN;i++){
+
+    for(int i=0;i<UNCODED_MSG_LEN/UNCODED_LEN;i++){
       read_count = fread(readbuf,sizeof(char),UNCODED_LEN,fp);
       if (read_count!=UNCODED_LEN){
         printf("\n");
           if (0!=feof(fp)){
               printf("end of file reached\n");
-              fclose(fp);
-              eof = true;
+              readbuf[read_count]='\0';
+              for(int j=0;j<UNCODED_LEN;j++){
+                if(readbuf[j]=='\0'){
+                  fputc(readbuf[j],stdout);
+                  break;
+                }
+                fputc(readbuf[j],stdout);
+              }
+              encode(readbuf,encodedbuf);
+              std::copy(encodedbuf,encodedbuf+ENCODED_LEN,msg + i*ENCODED_LEN);
               return 0;
           }
           int errnum=ferror(fp);
@@ -26,24 +34,43 @@ using namespace Hamming;
       }
       //encode msg
       encode(readbuf,encodedbuf);
+      //printf in msg
+      for(int j=0;j<UNCODED_LEN;j++){
+        fputc(readbuf[j],stdout);
+      }
       //concatinate msg to sendbuff
       std::copy(encodedbuf,encodedbuf+ENCODED_LEN,msg + i*ENCODED_LEN);
     }
     return 1;
   }
 
-  bool Hamming::write_msg(FILE* fp, int msg_len, char* msg){
+  int Hamming::write_msg(FILE* fp, char* msg, char* decoded_msg){
     char encodedbuf[ENCODED_LEN];
     char decodedbuf[UNCODED_LEN];
-    char decodedmsg[UNCODED_MSG_LEN];
+    int iResult =0;
     for(int i=0;i<ENCODED_MSG_LEN/ENCODED_LEN;i++){
+      //printf("%d,",i);
       std::copy(msg+i*ENCODED_LEN,msg+(i+1)*ENCODED_LEN,encodedbuf);
       decode(encodedbuf,decodedbuf);
-      std::copy(decodedbuf,decodedbuf+UNCODED_LEN,decodedmsg+i*UNCODED_LEN);
+      //print_arr(decodedbuf,UNCODED_LEN);
+      std::copy(decodedbuf,decodedbuf+UNCODED_LEN,decoded_msg +i*UNCODED_LEN);
+      for(int j=0;j<UNCODED_LEN;j++){
+        if(decodedbuf[j]=='\0'){
+          //fputc(decodedbuf[j],fp);
+          fputc(decodedbuf[j],stdout);
+          return 0;
+        }
+        fputc(decodedbuf[j],fp);
+        fputc(decodedbuf[j],stdout);
+      }
     }
-    print_arr(decodedmsg,UNCODED_MSG_LEN);
+    //iResult = fwrite(decoded_msg,sizeof(char),UNCODED_MSG_LEN,fp);
+    if(iResult!=UNCODED_MSG_LEN){
+      printf("%s\n",strerror(ferror(fp)));
+      return -1;
+    }
 
-    return true;
+    return 1;
   }
 
 void Hamming::encode(char* readbuf,char* encodedbuf){
@@ -184,14 +211,14 @@ void Hamming::reverseArray(char* arr, int arr_len){
 } 
 
 void Hamming::print_arr(char* arr,int arr_len){
-  // for(int i=0;i<arr_len/BYTE_LEN;i++){
-  //   for(int j=0;j<BYTE_LEN;j++){
-  //     printf("%d",arr[j+i*BYTE_LEN]);
-  //   }
-  //    printf(" ");
-  // }
 
   for(int i=0;i<arr_len;i++){
+    printf("%d",arr[i]);
+  }
+}
+
+void Hamming::print_arr_nl(char* arr, int arr_len){
+    for(int i=0;i<arr_len;i++){
     printf("%d",arr[i]);
   }
   printf("\n");

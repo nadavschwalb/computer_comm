@@ -24,7 +24,7 @@ int main(int argc, const char** argv) {
   char sendbuf[UNCODED_MSG_LEN];
   int iSendResult;
   int recvbuflen = DEFAULT_BUFLEN;
-
+  FILE* outfp = fopen("../output.txt","w");
   //address structs
   struct sockaddr_in sender_addr;
   struct sockaddr_in recver_addr;
@@ -127,7 +127,7 @@ int main(int argc, const char** argv) {
     if(iResult>0){
       text_green();
       //Hamming::print_arr(recvbuf,ENCODED_MSG_LEN);
-      if(!Hamming::write_msg(NULL,ENCODED_MSG_LEN,sendbuf));
+      Hamming::write_msg(outfp,recvbuf,sendbuf);
       text_reset();
       //if(!sendto_safe(&ChannelRecvSocket,recvbuf,&recver_addr,recver_addr_size,&iResult)) return 1;
       // if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));
@@ -167,6 +167,7 @@ int main(int argc, const char** argv) {
 closesocket(ChannelSendSocket);
 closesocket(ChannelRecvSocket);
 WSACleanup();
+fclose(outfp);
 printf("server - client shutdown cleanly\n");
 
   

@@ -98,28 +98,14 @@ int main(int argc, char** argv) {
     return 1;
   }
   //read and encode file
-  int read_count;
   bool eof = false;
-  char readbuf[UNCODED_LEN];
-  char encodedbuf[ENCODED_LEN];
-  iResult = 1;
-  while(iResult>0){ //while EOF not reached
-      iResult = Hamming::read_msg(fp,UNCODED_MSG_LEN,sendbuf);
-      if(iResult==0){
-        Hamming::print_arr(sendbuf,ENCODED_MSG_LEN);
-        if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
-        break;
-      }
-      else if(iResult<0){
-        closesocket(ConnectSocket);
-        WSACleanup();
-        return 1;
-      }
-      else{
-        Hamming::print_arr(sendbuf,ENCODED_MSG_LEN);
-        if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
-      }
-    }
+  while (!eof){
+    iResult = Hamming::read_msg(fp,sendbuf);
+    if(iResult==0) eof = true;
+    if(iResult<0) return 1;
+    //print_arr_nl(recvbuf,UNCODED_MSG_LEN);
+    if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
+  }
     printf("message sent\n");
 
   //send startup message 
