@@ -1,17 +1,27 @@
-abcdefghijklasdcfdda
-123456789
-fdsgdsfklvnlxcnvmxcnv.md,fng.zxcmvn,zcxmvnadfm,v zcxm, vzxmfngxnxcmv.,czxmb.,zfxmg.,xfzg
-xbcxbmcvbzbzcmbz
-blfnbmlbnds
-g
-vbns
-bds
-basdfklajheohaoiehfaklefhaowefoihawoeifhoawiehfalwoeifhoaeasdfasdfasdf
-aweirhwoeighlzaja,.20-592350923u50283ht2039ht0odm,f.na340th-a2wa-2q390q23
-qwoweriqwerahwoiehraowiehva;owiehroiahwoe3irhaowierhaoweirhtaowierha
-oawbegr2350-9q23u5-9  u23-59q234h0tghqn[w439a'wp9w3uta;ow3hta;w329hq-2=UQWT
-ALW3H50Q023BTGQA0W239U4TR-AQ23-=A0UW3-=T0UAQ-0395HAW[3'
-]]
-AP0W2395[QA23BN23W0G9HA[0W2930[AW90BU0[AW9EHG0A9WH3[0A9H2W3T0[AHW3]]]]]]
-Q-091U23405YQW.L\S\DGFA\A';3I;ZAOIH30A9H309AH30A;LKDH0HA3W0OUAS0E9[N32-UWE9H[Na#e]]
-QP2W3IOW3HNQAW3POW238IAHNWOPW3ITHNAW3;OUHTAO;W3HTOAIW3HT
+The saviour is here, fear no more! ;-) End of file characters are coupled to the
+stupidity of file systems. Early file systems just knew that a file was store at
+secors, say, 5, 9, 24, 42 (in that order) but didn't know for how much that last
+sector was filled by the file's data.
+
+The entire last sector was loaded in memory and the user (application) just had
+to guess. That's why they came up with a sentinel value, e.g. ^Z to denote the
+logical end of file. But what to do if the ^Z value happened to be part of the file
+in the last sector? Too bad, the file's length was just a multiple of a sector size.
+
+File systems nowadays do store the exact length of a file so there is no need
+anymore to read (or write) those silly sentinel values in the last sector. Deep
+down entire sectors are still read but that is way below the application level.
+
+Nowadays people forget to flush buffers (close() does it for them) and expect
+reading functions to be psychic, i.e. those functions are expected to predict
+whether or not they'll hit an end of file condition at their next read operation.
+
+Because no explicit end-of-file character is being written and because those
+single character reading functions have to indicate that they have just bumped
+into an end-of-file condition, they have to signal that condition with a sentinel
+value again. fgetc() does it by returning -1 which is outside the range of the
+valid character values but -1 is not written to a disk file image per se.
+
+kind regards,
+
+Jos

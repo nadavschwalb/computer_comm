@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <winerror.h>
 #include "ServerUtil.hpp"
+#include "hamming.hpp"
 #include "time.h"
 
 #pragma comment(lib, "Ws2_32.lib")
@@ -19,10 +20,11 @@ int main(int argc, char** argv) {
   //global objects
   WSADATA wsaData;
   int iResult;
-  char recvbuf[DEFAULT_BUFLEN];
+  char recvbuf[ENCODED_MSG_LEN];
+  char decodedbuf[UNCODED_MSG_LEN];
   char sendbuf[DEFAULT_BUFLEN];
   int iSendResult;
-
+  FILE* outfp = fopen(argv[2],"w");
   //channel address
   struct sockaddr_in channel_addr;
   int channel_addr_size = sizeof(channel_addr);
@@ -80,30 +82,34 @@ int main(int argc, char** argv) {
   // Receive until the peer shuts down the connection
   do
   {
-    printf("reciveing data from socket\n");
-
-    iResult = recvfrom(ReceiverSocket,recvbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,&channel_addr_size);
-    if(iResult == SOCKET_ERROR){
-      printWSAError();
-      closesocket(ReceiverSocket);
-      WSACleanup();
-      return 1;
+    //printf("reciveing data from socket\n");
+    if(!recvfrom_safe(&ReceiverSocket,recvbuf,&channel_addr,&channel_addr_size,&iResult)) return 1;
+    if(iResult>0){
+      Hamming::write_msg(outfp,recvbuf,decodedbuf);
     }
-    printf("channel address: %s\n",inet_ntoa(channel_addr.sin_addr));
-    if(iResult > 0){
-      text_green();
-      printf("%s",recvbuf);
-      text_reset();
-      strcpy(sendbuf,"message recieved by receiver\n");
-      iResult = sendto(ReceiverSocket,sendbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,channel_addr_size);
-      if(iResult == SOCKET_ERROR){
-        printWSAError();
-        closesocket(ReceiverSocket);
-        WSACleanup();
-        return 1;
-      }
-      printf("message sent to channel\n");
-    } 
+    
+    // iResult = recvfrom(ReceiverSocket,recvbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,&channel_addr_size);
+    // if(iResult == SOCKET_ERROR){
+    //   printWSAError();
+    //   closesocket(ReceiverSocket);
+    //   WSACleanup();
+    //   return 1;
+    // }
+    // printf("channel address: %s\n",inet_ntoa(channel_addr.sin_addr));
+    // if(iResult > 0){
+    //   text_green();
+    //   printf("%s",recvbuf);
+    //   text_reset();
+    //   strcpy(sendbuf,"message recieved by receiver\n");
+    //   iResult = sendto(ReceiverSocket,sendbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,channel_addr_size);
+    //   if(iResult == SOCKET_ERROR){
+    //     printWSAError();
+    //     closesocket(ReceiverSocket);
+    //     WSACleanup();
+    //     return 1;
+    //   }
+    //   printf("message sent to channel\n");
+    //} 
     else if(iResult == 0){
       printf("connection closing\n");
       break;

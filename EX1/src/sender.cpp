@@ -13,6 +13,7 @@
 #include <errno.h>
 #include "ServerUtil.hpp"
 #include "hamming.hpp"
+#include "time.h"
 #pragma comment(lib, "Ws2_32.lib")
 
 int main(int argc, char** argv) {
@@ -103,8 +104,12 @@ int main(int argc, char** argv) {
     iResult = Hamming::read_msg(fp,sendbuf);
     if(iResult==0) eof = true;
     if(iResult<0) return 1;
+    // printf("\n\n");
+    // int j=0; while(j<ENCODED_MSG_LEN){ fputc(sendbuf[j],stdout); j++;}
+    // printf("\n%d\n",j);
     //print_arr_nl(recvbuf,UNCODED_MSG_LEN);
     if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
+    Sleep(5);
   }
     printf("message sent\n");
 

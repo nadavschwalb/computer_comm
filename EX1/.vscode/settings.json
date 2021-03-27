@@ -41,7 +41,7 @@
 
   "cmake.debugConfig": {
     "args": [
-      "55541", "127.0.0.1", "55540"
+      "55540", "../outputFile.txt"
     ]
 }
 }

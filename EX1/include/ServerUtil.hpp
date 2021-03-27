@@ -9,8 +9,8 @@
 
 #define ERROR_BUF_LEN 512
 #define DEFAULT_BUFLEN 512
-#define UNCODED_MSG_LEN 660
-#define ENCODED_MSG_LEN 990
+#define UNCODED_MSG_LEN 330
+#define ENCODED_MSG_LEN 495
 //functions
 void printWSAError();
 BOOL send_safe(SOCKET* socket, char* buffer,int* iResult);

@@ -1,4 +1,5 @@
 #include "ServerUtil.hpp"
+#include "hamming.hpp"
 //functions
 
 void printWSAError(){
@@ -15,7 +16,7 @@ void printWSAError(){
 }
 
 BOOL send_safe(SOCKET* socket, char* buffer,int* iResult){
-  *iResult = send(*socket,buffer,DEFAULT_BUFLEN,0);
+  *iResult = send(*socket,buffer,ENCODED_MSG_LEN,0);
   if(*iResult == SOCKET_ERROR){
     printWSAError();
     closesocket(*socket);
@@ -26,7 +27,7 @@ BOOL send_safe(SOCKET* socket, char* buffer,int* iResult){
 }
 
 BOOL sendto_safe(SOCKET* socket, char* buffer,sockaddr_in* to,int tolen,int* iResult){
-  *iResult = sendto(*socket,buffer,DEFAULT_BUFLEN,0,(SOCKADDR*)to,tolen);
+  *iResult = sendto(*socket,buffer,ENCODED_MSG_LEN,0,(SOCKADDR*)to,tolen);
   if(*iResult == SOCKET_ERROR){
     printWSAError();
     closesocket(*socket);
@@ -37,7 +38,7 @@ BOOL sendto_safe(SOCKET* socket, char* buffer,sockaddr_in* to,int tolen,int* iRe
 }
 
 BOOL recv_safe(SOCKET* socket, char* buffer,int* iResult){
-  *iResult = recv(*socket,buffer,DEFAULT_BUFLEN,0);
+  *iResult = recv(*socket,buffer,ENCODED_MSG_LEN,0);
   if(*iResult == SOCKET_ERROR){
     printWSAError();
     closesocket(*socket);
@@ -48,7 +49,7 @@ BOOL recv_safe(SOCKET* socket, char* buffer,int* iResult){
 }
 
 BOOL recvfrom_safe(SOCKET* socket, char* buffer,sockaddr_in* from,int* fromlen,int* iResult){
-  *iResult = recvfrom(*socket,buffer,DEFAULT_BUFLEN,0,(SOCKADDR*) from,fromlen);
+  *iResult = recvfrom(*socket,buffer,ENCODED_MSG_LEN,0,(SOCKADDR*) from,fromlen);
   if(*iResult == SOCKET_ERROR){
     printWSAError();
     closesocket(*socket);

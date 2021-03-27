@@ -7,10 +7,10 @@ int main(int argc, char** argv){
   int iResult;
   char sendbuf[ENCODED_MSG_LEN] = {0};
   char recvbuf[UNCODED_MSG_LEN] ={0};
-  FILE* fp = fopen("../Dtelem.jpg", "r" );
-  FILE* Wfp = fopen("../outDtele.jpg","w");
-  //FILE* fp = fopen("../testFile.txt", "r" );
-  //FILE* Wfp = fopen("../outtestFile.txt","w");
+  //FILE* fp = fopen("../Dtelem.jpg", "r" );
+  //FILE* Wfp = fopen("../outDtele.jpg","w");
+  FILE* fp = fopen("../testFile.txt", "r" );
+  FILE* Wfp = fopen("../outtestFile.txt","w");
   fseek(fp,0,SEEK_END);
   printf("file length in bytes: %ld\n",ftell(fp));
   iResult = fseek(fp,0,SEEK_SET);

@@ -127,9 +127,9 @@ int main(int argc, const char** argv) {
     if(iResult>0){
       text_green();
       //Hamming::print_arr(recvbuf,ENCODED_MSG_LEN);
+      if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult)) return 1;
       Hamming::write_msg(outfp,recvbuf,sendbuf);
       text_reset();
-      //if(!sendto_safe(&ChannelRecvSocket,recvbuf,&recver_addr,recver_addr_size,&iResult)) return 1;
       // if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));
       // printf("message sent to receiver\n");
       // if(!recvfrom_safe(&ChannelRecvSocket,recvbuf,&recver_addr,&recver_addr_size,&iResult)) return 1;
