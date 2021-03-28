@@ -104,20 +104,10 @@ int main(int argc, char** argv) {
     iResult = Hamming::read_msg(fp,sendbuf);
     if(iResult==0) eof = true;
     if(iResult<0) return 1;
-    // printf("\n\n");
-    // int j=0; while(j<ENCODED_MSG_LEN){ fputc(sendbuf[j],stdout); j++;}
-    // printf("\n%d\n",j);
-    //print_arr_nl(recvbuf,UNCODED_MSG_LEN);
     if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
     Sleep(5);
   }
     printf("message sent\n");
-
-  //send startup message 
-  // strcpy(sendbuf,"hello server\n");
-  // //if(!sendto_safe(&ConnectSocket,sendbuf,&channel_addr,channel_addr_size,&iResult)) return 1;
-  // if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
-  printf("connection message sent\n");
   if(!recvfrom_safe(&ConnectSocket,recvbuf,&channel_addr,&channel_addr_size,&iResult)) return 1;
   if(iResult > 0){
     text_green();

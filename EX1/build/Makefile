@@ -672,6 +672,30 @@ src/hamming_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/hamming_test.cpp.s
 .PHONY : src/hamming_test.cpp.s
 
+src/noise.obj: src/noise.cpp.obj
+.PHONY : src/noise.obj
+
+# target to build an object file
+src/noise.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/noise.cpp.obj
+.PHONY : src/noise.cpp.obj
+
+src/noise.i: src/noise.cpp.i
+.PHONY : src/noise.i
+
+# target to preprocess a source file
+src/noise.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/noise.cpp.i
+.PHONY : src/noise.cpp.i
+
+src/noise.s: src/noise.cpp.s
+.PHONY : src/noise.s
+
+# target to generate assembly for a file
+src/noise.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\hamming_test.dir\build.make CMakeFiles/hamming_test.dir/src/noise.cpp.s
+.PHONY : src/noise.cpp.s
+
 src/receiver.obj: src/receiver.cpp.obj
 .PHONY : src/receiver.obj
 
@@ -775,6 +799,9 @@ help:
 	@echo ... src/hamming_test.obj
 	@echo ... src/hamming_test.i
 	@echo ... src/hamming_test.s
+	@echo ... src/noise.obj
+	@echo ... src/noise.i
+	@echo ... src/noise.s
 	@echo ... src/receiver.obj
 	@echo ... src/receiver.i
 	@echo ... src/receiver.s

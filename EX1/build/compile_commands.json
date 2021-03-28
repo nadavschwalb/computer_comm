@@ -53,5 +53,10 @@
   "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
   "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/hamming_test.dir/includes_CXX.rsp -g -o CMakeFiles\\hamming_test.dir\\src\\hamming.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\hamming.cpp",
   "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/hamming.cpp"
+},
+{
+  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/hamming_test.dir/includes_CXX.rsp -g -o CMakeFiles\\hamming_test.dir\\src\\noise.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\noise.cpp",
+  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/noise.cpp"
 }
 ]

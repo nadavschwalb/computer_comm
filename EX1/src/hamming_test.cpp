@@ -1,5 +1,6 @@
 #include "hamming.hpp"
 #include "ServerUtil.hpp"
+#include "noise.hpp"
 using namespace Hamming;
 int main(int argc, char** argv){
 
@@ -17,10 +18,11 @@ int main(int argc, char** argv){
   if(iResult != 0){
     printf("seek error: %S\n",strerror(iResult));
   }
-  
+  NoiseyChannel noise(5,1024);
   bool eof = false;
   while (!eof){
     iResult = Hamming::read_msg(fp,sendbuf);
+    noise.rand_flip_bit(sendbuf,ENCODED_MSG_LEN);
     if(iResult==0) eof = true;
     if(iResult<0) return 1;
       printf("\n\n");
