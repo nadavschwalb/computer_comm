@@ -16,16 +16,16 @@ namespace Hamming
   int read_msg(FILE* fp, char* msg);
   int write_msg(FILE* fp, char* msg, char* decoded_msg);
   void encode(char* readbuf,char* writebuf);
-  void decode(char* encoded,char* filebuf);
+  int decode(char* encoded,char* filebuf);
   void parity_encoder(char* inbits, char* outbits);
-  void parity_decoder(char* inbits, char* outbits);
+  int parity_decoder(char* inbits, char* outbits);
   void reverseArray(char* arr, int arr_len);
   void print_arr(char* arr,int arr_len);
   void print_arr_nl(char* arr, int arr_len);
   void diff_arr(char* src, char* diff, int arr_len);
   void merge(char* inbits, char* outarr, int nbits);
   void hamming_encoder(char* bits,char* encoded);
-  void hamming_decoder(char* bits,char* decoded);
+  int hamming_decoder(char* bits,char* decoded);
 
   template<typename T>
   void get_bits(T* block, char* bits, int nbits, int nelem){

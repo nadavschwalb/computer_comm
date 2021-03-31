@@ -48,16 +48,18 @@ using namespace Hamming;
     char encodedbuf[ENCODED_LEN];
     char decodedbuf[UNCODED_LEN];
     int iResult =0;
+    int errnum =0;
     for(int i=0;i<ENCODED_MSG_LEN/ENCODED_LEN;i++){
       //printf("%d,",i);
       std::copy(msg+i*ENCODED_LEN,msg+(i+1)*ENCODED_LEN,encodedbuf);
-      decode(encodedbuf,decodedbuf);
+      errnum += decode(encodedbuf,decodedbuf);
       //print_arr(decodedbuf,UNCODED_LEN);
       std::copy(decodedbuf,decodedbuf+UNCODED_LEN,decoded_msg +i*UNCODED_LEN);
       for(int j=0;j<UNCODED_LEN;j++){
         if(decodedbuf[j]=='\0'){
           //fputc(decodedbuf[j],fp);
           fputc(decodedbuf[j],stdout);
+          printf("error num: %d\n",errnum);
           return 0;
         }
         fputc(decodedbuf[j],fp);
@@ -69,7 +71,7 @@ using namespace Hamming;
       printf("%s\n",strerror(ferror(fp)));
       return -1;
     }
-
+    printf("error num: %d\n",errnum);
     return 1;
   }
 
@@ -85,16 +87,18 @@ void Hamming::encode(char* readbuf,char* encodedbuf){
   merge(outbits,encodedbuf,ENCODED_LEN);
 }
 
-void Hamming::decode(char* encoded,char* filebuf){
+int Hamming::decode(char* encoded,char* filebuf){
   char inbits[ENCODED_LEN*BYTE_LEN];
   char outbits[UNCODED_LEN*BYTE_LEN];
+  int errnum =0;
   get_bits<char>(encoded,inbits,BYTE_LEN,ENCODED_LEN);
   // printf("encoded bits: ");
   // print_arr(inbits,ENCODED_LEN*BYTE_LEN);
-  hamming_decoder(inbits,outbits);
+  errnum = hamming_decoder(inbits,outbits);
   // printf("decoded bits: ");
   // print_arr(outbits,UNCODED_LEN*BYTE_LEN);
   merge(outbits,filebuf,UNCODED_LEN);
+  return errnum;
 }
 
 void Hamming::parity_encoder(char* inbits, char* outbits){
@@ -122,7 +126,7 @@ void Hamming::parity_encoder(char* inbits, char* outbits){
   //reverseArray(outbits,ENCODED_LEN);
 }
 
-void Hamming::parity_decoder(char* inbits, char* outbits){
+int Hamming::parity_decoder(char* inbits, char* outbits){
   int errnum =0;
   char result =0;
   //reverseArray(inbits,ENCODED_LEN);
@@ -130,29 +134,29 @@ void Hamming::parity_decoder(char* inbits, char* outbits){
   result = inbits[2]^inbits[4]^inbits[6]^inbits[8]^inbits[10]^inbits[12]^inbits[14];
   if(result!=inbits[0]){
     errnum+=1;
-    printf("error detected: 0 bit\n");
+    //printf("error detected: 0 bit\n");
   }
   result = inbits[2]^inbits[5]^inbits[6]^inbits[9]^inbits[10]^inbits[13]^inbits[14];
   if(result!=inbits[1]){
     errnum+=1;
-    printf("error detected: 1 bit\n");
+    //printf("error detected: 1 bit\n");
   }
   result = inbits[4]^inbits[5]^inbits[6]^inbits[11]^inbits[12]^inbits[13]^inbits[14];
   if(result!=inbits[3]){
     errnum+=1;
-    printf("error detected: 3 bit\n");
+    //printf("error detected: 3 bit\n");
   }
   result = inbits[8]^inbits[9]^inbits[10]^inbits[11]^inbits[12]^inbits[13]^inbits[14];
   if(result!=inbits[7]){
     errnum+=1;
-    printf("error detected: 7 bit\n");
+    //printf("error detected: 7 bit\n");
   }
   //fill outbits with decoded message
   outbits[0] = inbits[2]; outbits[1] = inbits[4]; outbits[2] = inbits[5]; 
   outbits[3] = inbits[6]; outbits[4] = inbits[8]; outbits[5] = inbits[9];
   outbits[6] = inbits[10]; outbits[7] = inbits[11]; outbits[8] = inbits[12];
   outbits[9] = inbits[13]; outbits[10] = inbits[14];
-  //reverseArray(outbits,UNCODED_LEN);
+  return errnum;
 }
 
 void Hamming::merge(char* inbits, char* outarr, int nbits){
@@ -182,7 +186,8 @@ void Hamming::hamming_encoder(char* bits,char* encoded){
   }
 }
 
-void Hamming::hamming_decoder(char* bits,char* decoded){
+int Hamming::hamming_decoder(char* bits,char* decoded){
+  int errnum =0;
   char inbits[ENCODED_LEN];
   char outbits[UNCODED_LEN];
   //printf("decoder out: ");
@@ -192,10 +197,11 @@ void Hamming::hamming_decoder(char* bits,char* decoded){
       inbits[j] = bits[i*ENCODED_LEN +j];
     }
     //encode inbits into outbits array
-    parity_decoder(inbits,outbits);
+    errnum += parity_decoder(inbits,outbits);
     //merge encoded bits into int array
     std::copy(outbits,outbits+UNCODED_LEN,decoded + i*UNCODED_LEN);
   }
+  return errnum;
 } 
 
 void Hamming::reverseArray(char* arr, int arr_len){
